@@ -1,52 +1,43 @@
-# 📊 Análise de Vendas - Power BI
+# 📊 Análise de Vendas | Power BI
 
-## 📌 Sobre o projeto
+Projeto desenvolvido para analisar o desempenho comercial de uma empresa
+a partir de uma base de dados fictícia.
 
-Projeto desenvolvido em Power BI para analisar o desempenho de vendas de uma empresa utilizando uma base de dados fictícia.
+O projeto foi construído no Power BI, passando pelo tratamento dos dados,
+modelagem, criação de medidas em DAX e desenvolvimento do dashboard.
 
-O dashboard permite analisar faturamento, custos, lucro, descontos, produtos, regiões, clientes e vendedores, apoiando a identificação de indicadores e padrões de desempenho.
+![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
+![DAX](https://img.shields.io/badge/DAX-245373?style=for-the-badge)
+![Power Query](https://img.shields.io/badge/Power%20Query-245373?style=for-the-badge)
+![Excel](https://img.shields.io/badge/Excel-217346?style=for-the-badge&logo=microsoftexcel&logoColor=white)
 
-## 🖼️ Dashboard
+---
 
-### 📊 Dashboard interativo
+## 📊 Dashboard
 
-[🔗 Visualizar Dashboard no Power BI](https://app.powerbi.com/view?r=eyJrIjoiODJmMmZlZWUtNDhlNi00MDBjLWI1ZTctYzA4ZjQ2ZGI1NTNmIiwidCI6IjUwMWRjZjJhLWI1ZWUtNGEyNC1hZjQzLTJiMWY1NTQ3ZTQxNSJ9)
+[**🔗 Acessar dashboard interativo no Power BI**](https://app.powerbi.com/view?r=eyJrIjoiODJmMmZlZWUtNDhlNi00MDBjLWI1ZTctYzA4ZjQ2ZGI1NTNmIiwidCI6IjUwMWRjZjJhLWI1ZWUtNGEyNC1hZjQzLTJiMWY1NTQ3ZTQxNSJ9)
 
-### Visão Geral
+### Faturamento
 
-![Visão Geral](imagens/Página%201%20-%20Faturamento.png)
+![Dashboard de faturamento](imagens/Página%201%20-%20Faturamento.png)
 
-### Análise de Vendas
+### Vendas
 
-![Análise de Vendas](imagens/Página%202%20-%20Vendas.png)
+![Dashboard de vendas](imagens/Página%202%20-%20Vendas.png)
 
-## 🛠️ Ferramentas utilizadas
+---
 
-- Power BI
-- Power Query
-- DAX
-- Excel
+## 🔎 Principais análises
 
-## 🧩 Modelagem e desenvolvimento
-
-O projeto foi desenvolvido utilizando:
-
-- Tratamento e transformação dos dados no Power Query
-- Modelagem de dados e criação de relacionamentos
-- Criação de medidas e indicadores utilizando DAX
-- Desenvolvimento de tabela calendário
-- Criação de KPIs e visualizações interativas
-- Organização do projeto em formato PBIP para versionamento no GitHub
-
-## 📊 Análises realizadas
-
-- Faturamento por mês
+- Evolução do faturamento ao longo do ano
 - Faturamento por categoria
 - Faturamento por região
 - Top 10 produtos
 - Análise de descontos
-- Vendas por região
-- Análise de vendedores
+- Desempenho dos vendedores
+- Indicadores de vendas, custos e lucro
+
+---
 
 ## 📈 Principais indicadores
 
@@ -61,18 +52,46 @@ O projeto foi desenvolvido utilizando:
 | Clientes | 12 |
 | Ticket médio | R$ 2.604,54 |
 
+---
+
+## 🧩 Tratamento e modelagem
+
+Os dados foram tratados no Power Query e organizados em um modelo
+relacional no Power BI.
+
+Foram utilizadas medidas em DAX para criação dos principais indicadores
+do dashboard, como faturamento, lucro, margem, ticket médio e quantidade
+de vendas.
+
+O projeto também está disponível em formato **PBIP**, permitindo visualizar
+a estrutura do relatório e as definições do modelo diretamente no GitHub.
+
+---
+
+## 🛠️ Ferramentas
+
+**Power BI** · **Power Query** · **DAX** · **Excel**
+
+---
+
 ## 📁 Estrutura do projeto
 
 ```text
 analise-vendas-power-bi/
+│
+├── dados/
+│   └── Base_Vendas_Projeto_Power_BI.xlsx
+│
 ├── dashboard/
 │   └── T1_Relatório_Vendas.pbix
+│
 ├── imagens/
 │   ├── Página 1 - Faturamento.png
 │   └── Página 2 - Vendas.png
-├── dados/
-│   └── Base_Vendas_Projeto_Power_BI.xlsx
+│
 ├── projeto-power-bi/
-│   ├── T1_Relatório_Vendas.Report/
-│   └── T1_Relatório_Vendas.SemanticModel/
+│   ├── T1_Relatório_Vendas.Report
+│   ├── T1_Relatório_Vendas.SemanticModel
+│   └── T1_Relatório_Vendas.pbix
+│
 └── README.md
