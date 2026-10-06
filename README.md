@@ -4,8 +4,7 @@
 
 Projeto desenvolvido em Power BI para analisar o desempenho de vendas de uma empresa utilizando uma base de dados fictícia.
 
-O dashboard permite analisar faturamento, custos, lucro, descontos, produtos, regiões, clientes e vendedores.
-
+O dashboard permite analisar faturamento, custos, lucro, descontos, produtos, regiões, clientes e vendedores, apoiando a identificação de indicadores e padrões de desempenho.
 
 ## 🖼️ Dashboard
 
@@ -21,8 +20,6 @@ O dashboard permite analisar faturamento, custos, lucro, descontos, produtos, re
 
 ![Análise de Vendas](imagens/Página%202%20-%20Vendas.png)
 
-
-
 ## 🛠️ Ferramentas utilizadas
 
 - Power BI
@@ -30,7 +27,16 @@ O dashboard permite analisar faturamento, custos, lucro, descontos, produtos, re
 - DAX
 - Excel
 
+## 🧩 Modelagem e desenvolvimento
 
+O projeto foi desenvolvido utilizando:
+
+- Tratamento e transformação dos dados no Power Query
+- Modelagem de dados e criação de relacionamentos
+- Criação de medidas e indicadores utilizando DAX
+- Desenvolvimento de tabela calendário
+- Criação de KPIs e visualizações interativas
+- Organização do projeto em formato PBIP para versionamento no GitHub
 
 ## 📊 Análises realizadas
 
@@ -41,7 +47,6 @@ O dashboard permite analisar faturamento, custos, lucro, descontos, produtos, re
 - Análise de descontos
 - Vendas por região
 - Análise de vendedores
-
 
 ## 📈 Principais indicadores
 
@@ -56,8 +61,6 @@ O dashboard permite analisar faturamento, custos, lucro, descontos, produtos, re
 | Clientes | 12 |
 | Ticket médio | R$ 2.604,54 |
 
-
-
 ## 📁 Estrutura do projeto
 
 ```text
@@ -69,4 +72,7 @@ analise-vendas-power-bi/
 │   └── Página 2 - Vendas.png
 ├── dados/
 │   └── Base_Vendas_Projeto_Power_BI.xlsx
+├── projeto-power-bi/
+│   ├── T1_Relatório_Vendas.Report/
+│   └── T1_Relatório_Vendas.SemanticModel/
 └── README.md
