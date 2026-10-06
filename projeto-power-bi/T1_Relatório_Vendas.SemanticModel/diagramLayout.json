@@ -1,0 +1,74 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 106.40080160320642
+          },
+          "nodeIndex": "Data",
+          "nodeLineageTag": "5a184875-a172-4020-9428-2657dc31bc76",
+          "size": {
+            "height": 277,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 410,
+            "y": 0
+          },
+          "nodeIndex": "Venda",
+          "nodeLineageTag": "191e87d1-90da-4b29-9ef4-1e919646f93b",
+          "size": {
+            "height": 494,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 739.17034068136275,
+            "y": 122.47895791583167
+          },
+          "nodeIndex": "Medidas",
+          "nodeLineageTag": "5e87421c-4216-46d7-953e-4e13c81a3dca",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 408.85370741482973,
+            "y": 652.54909819639272
+          },
+          "nodeIndex": "Vendedores",
+          "nodeLineageTag": "2c76da60-7cc1-4247-a21c-870bbd0559d6",
+          "size": {
+            "height": 145,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 77.484472049689444,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

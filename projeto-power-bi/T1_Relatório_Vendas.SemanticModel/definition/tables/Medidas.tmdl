@@ -1,0 +1,80 @@
+table Medidas
+	lineageTag: 5e87421c-4216-46d7-953e-4e13c81a3dca
+
+	measure Faturamento = SUM(Venda[Valor_Venda])
+		lineageTag: f652b095-96cd-43af-8229-9487b5c108ba
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Custo' = SUM(Venda[Custo_Total])
+		lineageTag: 09b57a38-0ce8-4770-80de-231d49771c88
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Lucro = [Faturamento] - [Total Custo]
+		lineageTag: c86d39c6-6718-41de-ba7b-e6f29d961358
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd.vendas' = DISTINCTCOUNT(Venda[ID_Venda])
+		formatString: 0
+		lineageTag: 20e22d47-0d96-4b1f-a4fa-ca30d11c5412
+
+	measure 'Ticket Médio' = DIVIDE([Faturamento],[Qtd.vendas])
+		lineageTag: 43cf733a-cfcb-4274-ab17-de6942a2f15a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Margem %' = DIVIDE([Lucro],[Faturamento] )
+		lineageTag: aaab6fab-d01e-4d2f-9c10-06912e76ce7e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd.produtos' = SUM(Venda[Quantidade] )
+		formatString: 0
+		lineageTag: 06434e5f-a507-49da-b22b-602e5170dc8e
+
+	measure 'Qtd.clientes' = DISTINCTCOUNT(Venda[Codigo_Cliente])
+		formatString: 0
+		lineageTag: 1ef426b0-2da4-4b68-9e7e-fad05760e065
+
+	measure 'Vendas com desconto' = CALCULATE([Qtd.vendas],Venda[Percentual_Desconto]>0)
+		formatString: 0
+		lineageTag: 75aea511-9a6e-4274-a6cb-4e05c149d6af
+
+	measure '% vendas com desconto' = DIVIDE([Vendas com desconto],[Qtd.vendas] )
+		lineageTag: 5ddb20e6-c660-448e-91b6-e3ca87171dbf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Desconto total' = SUM(Venda[Valor_Desconto])
+		lineageTag: 1e1e1e68-8ec2-467c-a6a3-b31b386e7a65
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Desconto efetivo %' = DIVIDE([Desconto total],SUM(Venda[Valor_Bruto] ))
+		lineageTag: 6d61843d-8bbd-4adf-94dc-7c86c5db64f1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Medida
+		lineageTag: c3377d70-7ea2-4459-bca8-4a5be577bdd9
+
+	column Value
+		isHidden
+		formatString: 0
+		lineageTag: 9a938b78-b528-4b68-ad98-c2e4f19f2c24
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medidas = calculated
+		mode: import
+		source = Row("Value", BLANK())
+
+	annotation PBI_Id = aad779425fc542559bdf09342624ae0b
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

@@ -1,0 +1,89 @@
+table Data
+	lineageTag: 5a184875-a172-4020-9428-2657dc31bc76
+
+	column Data
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9bc23130-8a89-4588-a16f-353f50315cf7
+		summarizeBy: none
+		sourceColumn: Data
+
+		variation Variation
+			isDefault
+			relationship: 1f3a2c2a-b9cc-426f-abc5-47ef5a69ad93
+			defaultHierarchy: LocalDateTable_a7ab13d4-0e12-4d32-a479-0542ecb49eb0.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Mês
+		dataType: int64
+		formatString: 0
+		lineageTag: 7bc570a8-c7e1-471c-9b13-27839df10ad6
+		summarizeBy: sum
+		sourceColumn: Mês
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dia
+		dataType: int64
+		formatString: 0
+		lineageTag: fa6e247b-5118-48f4-92d7-628668b3b39d
+		summarizeBy: sum
+		sourceColumn: Dia
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano
+		dataType: int64
+		formatString: 0
+		lineageTag: 5b8fad0a-42fb-4289-acfa-c6af680c421d
+		summarizeBy: sum
+		sourceColumn: Ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome do Mês'
+		dataType: string
+		lineageTag: 59af6bc3-647b-4e24-accc-f3925cf63a46
+		summarizeBy: none
+		sourceColumn: Nome do Mês
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome do Dia'
+		dataType: string
+		lineageTag: a065edc2-e776-4e58-91a5-1ded7239fd46
+		summarizeBy: none
+		sourceColumn: Nome do Dia
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Data = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\Users\isabe\OneDrive\Estudos\Power BI Completo - do básico ao avançado + SQL\Est.s\T1\Base_Vendas_Projeto_Power_BI.xlsx"), null, true),
+				    Vendas_Sheet = Fonte{[Item="Vendas",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Vendas_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"ID_Venda", type text}, {"Data", type date}, {"Codigo_Cliente", type text}, {"Cliente", type text}, {"Regiao", type text}, {"Produto", type text}, {"Categoria", type text}, {"Vendedor", type text}, {"Quantidade", Int64.Type}, {"Preco_Unitario", type number}, {"Percentual_Desconto", type number}, {"Valor_Bruto", type number}, {"Valor_Desconto", type number}, {"Valor_Venda", type number}, {"Custo_Total", type number}}),
+				    #"Outras Colunas Removidas" = Table.SelectColumns(#"Tipo Alterado",{"Data"}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Outras Colunas Removidas",{{"Data", type date}}),
+				    #"Mês Inserido" = Table.AddColumn(#"Tipo Alterado1", "Mês", each Date.Month([Data]), Int64.Type),
+				    #"Semana do Mês Inserida" = Table.AddColumn(#"Mês Inserido", "Semana do Mês", each Date.WeekOfMonth([Data]), Int64.Type),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Semana do Mês Inserida",{"Semana do Mês"}),
+				    #"Dia Inserido" = Table.AddColumn(#"Colunas Removidas", "Dia", each Date.Day([Data]), Int64.Type),
+				    #"Mês Inserido1" = Table.AddColumn(#"Dia Inserido", "Mês.1", each Date.Month([Data]), Int64.Type),
+				    #"Colunas Removidas1" = Table.RemoveColumns(#"Mês Inserido1",{"Mês.1"}),
+				    #"Ano Inserido" = Table.AddColumn(#"Colunas Removidas1", "Ano", each Date.Year([Data]), Int64.Type),
+				    #"Nome do Mês Inserido" = Table.AddColumn(#"Ano Inserido", "Nome do Mês", each Date.MonthName([Data]), type text),
+				    #"Nome do Dia Inserido" = Table.AddColumn(#"Nome do Mês Inserido", "Nome do Dia", each Date.DayOfWeekName([Data]), type text),
+				    #"Duplicatas Removidas" = Table.Distinct(#"Nome do Dia Inserido", {"Data"})
+				in
+				    #"Duplicatas Removidas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

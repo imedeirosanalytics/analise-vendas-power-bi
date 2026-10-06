@@ -1,0 +1,13 @@
+relationship 1f3a2c2a-b9cc-426f-abc5-47ef5a69ad93
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Data.Data
+	toColumn: LocalDateTable_a7ab13d4-0e12-4d32-a479-0542ecb49eb0.Date
+
+relationship 19dc1f7a-3f13-b2ca-130c-0bbd3ed831e3
+	fromColumn: Venda.Data
+	toColumn: Data.Data
+
+relationship AutoDetected_19c6a5d0-f9af-4a6a-b3f2-0aae280b62b9
+	fromColumn: Venda.Vendedor
+	toColumn: Vendedores.Vendedor
+

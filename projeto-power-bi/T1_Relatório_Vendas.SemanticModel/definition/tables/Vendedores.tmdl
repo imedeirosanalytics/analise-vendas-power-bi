@@ -1,0 +1,40 @@
+table Vendedores
+	lineageTag: 2c76da60-7cc1-4247-a21c-870bbd0559d6
+
+	column Vendedor
+		dataType: string
+		lineageTag: 1066a419-6b17-48ac-af63-61cd103181d5
+		summarizeBy: none
+		sourceColumn: Vendedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gênero
+		dataType: string
+		lineageTag: f215d239-cf0e-4657-89dc-1925912e3a45
+		summarizeBy: none
+		sourceColumn: Gênero
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Vendedores = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\Users\isabe\OneDrive\Estudos\Power BI Completo - do básico ao avançado + SQL\Est.s\T1\Base_Vendas_Projeto_Power_BI.xlsx"), null, true),
+				    Vendas_Sheet = Fonte{[Item="Vendas",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Vendas_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"ID_Venda", type text}, {"Data", type date}, {"Codigo_Cliente", type text}, {"Cliente", type text}, {"Regiao", type text}, {"Produto", type text}, {"Categoria", type text}, {"Vendedor", type text}, {"Quantidade", Int64.Type}, {"Preco_Unitario", type number}, {"Percentual_Desconto", type number}, {"Valor_Bruto", type number}, {"Valor_Desconto", type number}, {"Valor_Venda", type number}, {"Custo_Total", type number}}),
+				    #"Outras Colunas Removidas" = Table.SelectColumns(#"Tipo Alterado",{"Vendedor"}),
+				    #"Duplicatas Removidas" = Table.Distinct(#"Outras Colunas Removidas"),
+				    #"Personalização Adicionada" = Table.AddColumn(#"Duplicatas Removidas", "Gênero", each if [Vendedor] = "Ana" then "Fem"
+				else if [Vendedor] = "Carla" then "Fem"
+				else if [Vendedor] = "Eduarda" then "Fem"
+				else "Masc")
+				in
+				    #"Personalização Adicionada"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

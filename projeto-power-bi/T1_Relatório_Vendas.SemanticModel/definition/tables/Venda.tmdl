@@ -1,0 +1,154 @@
+table Venda
+	lineageTag: 191e87d1-90da-4b29-9ef4-1e919646f93b
+
+	column ID_Venda
+		dataType: string
+		lineageTag: 12c8ed09-b39f-4713-8920-68ccfc06a950
+		summarizeBy: none
+		sourceColumn: ID_Venda
+
+		annotation SummarizationSetBy = Automatic
+
+	column Data
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0268a7c8-14d1-48b7-8fcc-39ce8a4d3d2f
+		summarizeBy: none
+		sourceColumn: Data
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Codigo_Cliente
+		dataType: string
+		lineageTag: 3be74964-85c8-4626-bef6-9a4ef003d401
+		summarizeBy: none
+		sourceColumn: Codigo_Cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cliente
+		dataType: string
+		lineageTag: 14b9dfe3-b5f9-4251-ae64-11784823f269
+		summarizeBy: none
+		sourceColumn: Cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column Regiao
+		dataType: string
+		lineageTag: c617269c-7fee-4ae7-8810-b1a7ac1e004f
+		summarizeBy: none
+		sourceColumn: Regiao
+
+		annotation SummarizationSetBy = Automatic
+
+	column Produto
+		dataType: string
+		lineageTag: b44d26a9-d178-4249-9205-c5ac946b2c51
+		summarizeBy: none
+		sourceColumn: Produto
+
+		annotation SummarizationSetBy = Automatic
+
+	column Categoria
+		dataType: string
+		lineageTag: c4a70213-6490-4893-b42d-ab8a01cde785
+		summarizeBy: none
+		sourceColumn: Categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vendedor
+		dataType: string
+		lineageTag: 848d961c-caf2-45e3-8cd8-0b15f34d2af7
+		summarizeBy: none
+		sourceColumn: Vendedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantidade
+		dataType: int64
+		formatString: 0
+		lineageTag: 945bccb7-3750-4b2e-b340-8041901cb9ee
+		summarizeBy: sum
+		sourceColumn: Quantidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column Preco_Unitario
+		dataType: double
+		lineageTag: 32a96468-ed88-46e9-9c37-2885e276dec0
+		summarizeBy: sum
+		sourceColumn: Preco_Unitario
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Percentual_Desconto
+		dataType: double
+		lineageTag: 3dec3454-d9d2-4292-80aa-74820cca3310
+		summarizeBy: sum
+		sourceColumn: Percentual_Desconto
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Valor_Bruto
+		dataType: double
+		lineageTag: 12973870-9f86-4951-854c-94abc3ba63ec
+		summarizeBy: sum
+		sourceColumn: Valor_Bruto
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Valor_Desconto
+		dataType: double
+		lineageTag: a0da35ff-809c-42cc-9c46-7d4cac7fd4ba
+		summarizeBy: sum
+		sourceColumn: Valor_Desconto
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Valor_Venda
+		dataType: double
+		lineageTag: e7e5c76f-1db0-4bbd-94d9-42146ec50a1d
+		summarizeBy: sum
+		sourceColumn: Valor_Venda
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Custo_Total
+		dataType: double
+		lineageTag: 87134558-4aec-4b75-9228-dc9c59cfee9c
+		summarizeBy: sum
+		sourceColumn: Custo_Total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Venda = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\Users\isabe\OneDrive\Estudos\Power BI Completo - do básico ao avançado + SQL\Est.s\T1\Base_Vendas_Projeto_Power_BI.xlsx"), null, true),
+				    Vendas_Sheet = Fonte{[Item="Vendas",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Vendas_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"ID_Venda", type text}, {"Data", type date}, {"Codigo_Cliente", type text}, {"Cliente", type text}, {"Regiao", type text}, {"Produto", type text}, {"Categoria", type text}, {"Vendedor", type text}, {"Quantidade", Int64.Type}, {"Preco_Unitario", type number}, {"Percentual_Desconto", type number}, {"Valor_Bruto", type number}, {"Valor_Desconto", type number}, {"Valor_Venda", type number}, {"Custo_Total", type number}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
