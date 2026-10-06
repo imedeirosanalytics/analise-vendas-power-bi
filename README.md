@@ -7,6 +7,21 @@ Projeto desenvolvido em Power BI para analisar o desempenho de vendas de uma emp
 O dashboard permite analisar faturamento, custos, lucro, descontos, produtos, regiões, clientes e vendedores.
 
 
+## 🖼️ Dashboard
+
+### 📊 Dashboard interativo
+
+[🔗 Visualizar Dashboard no Power BI](https://app.powerbi.com/view?r=eyJrIjoiODJmMmZlZWUtNDhlNi00MDBjLWI1ZTctYzA4ZjQ2ZGI1NTNmIiwidCI6IjUwMWRjZjJhLWI1ZWUtNGEyNC1hZjQzLTJiMWY1NTQ3ZTQxNSJ9)
+
+### Visão Geral
+
+![Visão Geral](imagens/Página%201%20-%20Faturamento.png)
+
+### Análise de Vendas
+
+![Análise de Vendas](imagens/Página%202%20-%20Vendas.png)
+
+
 
 ## 🛠️ Ferramentas utilizadas
 
@@ -40,18 +55,6 @@ O dashboard permite analisar faturamento, custos, lucro, descontos, produtos, re
 | Produtos vendidos | 2.614 |
 | Clientes | 12 |
 | Ticket médio | R$ 2.604,54 |
-
-
-
-## 🖼️ Dashboard
-
-### Visão Geral
-
-![Visão Geral](imagens/Página%201%20-%20Faturamento.png)
-
-### Análise de Vendas
-
-![Análise de Vendas](imagens/Página%202%20-%20Vendas.png)
 
 
 
