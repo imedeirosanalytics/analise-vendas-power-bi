@@ -9,9 +9,9 @@ O objetivo é responder a quatro perguntas de negócio:
 3. Qual é o grau de dependência dos principais clientes?
 4. Como o resultado varia entre vendedores e ao longo do ano?
 
-**[Abrir o dashboard publicado](https://app.powerbi.com/view?r=eyJrIjoiODJmMmZlZWUtNDhlNi00MDBjLWI1ZTctYzA4ZjQ2ZGI1NTNmIiwidCI6IjUwMWRjZjJhLWI1ZWUtNGEyNC1hZjQzLTJiMWY1NTQ3ZTQxNSJ9)**
+**[Abrir o dashboard publicado](https://app.powerbi.com/view?r=eyJrIjoiY2Q2Nzc2ZTQtNjA4NC00M2RmLWJhZDgtYWJmZTU3NGE5OTFmIiwidCI6IjUwMWRjZjJhLWI1ZWUtNGEyNC1hZjQzLTJiMWY1NTQ3ZTQxNSJ9)**
 
-![Página de faturamento](imagens/Página%201%20-%20Faturamento.png)
+![Página de faturamento](imagens/faturamento.png)
 
 ## Resultados do período
 
@@ -44,13 +44,13 @@ Março e setembro foram os meses mais fortes, com cerca de 10% da receita anual 
 
 ## Página de vendas
 
-![Página de vendas](imagens/Página%202%20-%20Vendas.png)
+![Página de vendas](imagens/vendas.png)
 
 ## Como foi construído
 
-- **Power Query:** importação da base em Excel, tipagem das colunas e criação das tabelas de calendário e de vendedores a partir da tabela de vendas.
-- **Modelagem:** tabela fato `Venda` relacionada às dimensões `Data` e `Vendedores`, com uma tabela dedicada para as medidas.
-- **DAX:** medidas de faturamento, custo, lucro, margem, ticket médio, quantidade de vendas e clientes, percentual de vendas com desconto e desconto efetivo.
+- **Power Query:** a base em Excel é lida a partir de um parâmetro (`CaminhoBase`); as tabelas de vendedores e de calendário são derivadas da consulta de vendas, sem reler o arquivo.
+- **Modelagem:** tabela fato `Venda` relacionada às dimensões `Data` e `Vendedores`, com uma tabela dedicada para as medidas. A tabela `Data` é um calendário contínuo, marcado como tabela de datas, e a data/hora automática do Power BI está desativada.
+- **DAX:** medidas de faturamento, custo, lucro, margem, ticket médio, quantidade de vendas e clientes, percentual de vendas com desconto e desconto efetivo, com formatos de moeda e percentual definidos no próprio modelo.
 - **Versionamento:** o relatório também está salvo no formato PBIP (TMDL), o que permite ler o modelo e as medidas diretamente pelo GitHub.
 
 Exemplo de medida:
@@ -64,17 +64,19 @@ DIVIDE ( [Desconto total], SUM ( Venda[Valor_Bruto] ) )
 
 ```text
 analise-vendas-power-bi/
-├── dados/              Base de vendas em Excel
-├── dashboard/          Arquivo .pbix do relatório
+├── dados/              base-vendas.xlsx
+├── dashboard/          relatorio-vendas.pbix
 ├── imagens/            Capturas das páginas do dashboard
-└── projeto-power-bi/   Relatório e modelo semântico em formato PBIP
+└── projeto-power-bi/   relatorio-vendas.pbip (relatório e modelo em formato PBIP)
 ```
 
 ## Como abrir
 
 - **Versão publicada:** use o link no início desta página; não é preciso instalar nada.
-- **Power BI Desktop:** baixe o arquivo da pasta `dashboard/` e abra no Power BI Desktop (Windows).
-- **Formato PBIP:** abra o arquivo `definition.pbir`, dentro da pasta `projeto-power-bi/T1_Relatório_Vendas.Report`.
+- **Power BI Desktop:** baixe `dashboard/relatorio-vendas.pbix` e abra no Power BI Desktop (Windows).
+- **Formato PBIP:** abra `projeto-power-bi/relatorio-vendas.pbip`.
+
+Para atualizar os dados, ajuste o parâmetro `CaminhoBase` (Transformar dados > Gerenciar parâmetros) com o local onde você salvou `dados/base-vendas.xlsx`.
 
 ## Autora
 
